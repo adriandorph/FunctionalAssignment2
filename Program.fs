@@ -16,19 +16,19 @@ let rec downto2 : int -> int list =
 
 
 //2.2
-let rec removeOddInd =
+let rec removeOddIdx =
     function
     | [] -> []
-    | x::y::xys -> x :: (removeOddInd xys)
-    | x::xs -> x::(removeOddInd xs)
+    | x::y::xys -> x :: (removeOddIdx xys)
+    | x::xs -> x::(removeOddIdx xs)
 
 
 //2.3
-let rec combinePairs =
+let rec combinePair =
      function
      | [] -> []
      | [x] -> []
-     | x::y::xys -> ((x,y) :: combinePairs xys)
+     | x::y::xys -> ((x,y) :: combinePair xys)
 
 
 //2.4
@@ -135,14 +135,14 @@ let singleLetterScore word pos points =
 let doubleLetterScore word pos points  =
     (letterPoint word pos) * 2 + points
 
-let trippleLetterScore word pos points =
+let tripleLetterScore word pos points =
     (letterPoint word pos) * 3 + points
 
 //2.13
 let doubleWordScore _ _ points =
     points * 2
 
-let trippleWordScore _ _ points =
+let tripleWordScore _ _ points =
     points * 3
 
 //2.14
@@ -169,30 +169,29 @@ type square = (int * squareFun) list
 let main args =
     printfn "2.1 downto1 : Expected: %A Actual: %A" [3;2;1;] (downto1 3)
     printfn "2.1 downto2 : Expected: %A Actual: %A" [3;2;1;] (downto2 3)
-    printfn "2.2 removeOddInd : Expected: %A Actual: %A" [0;2;4] (removeOddInd [0;1;2;3;4;])
-    printfn "2.3 combinePairs : Expected %A Actual : %A" [(1,2);(3,4)] (combinePairs [1;2;3;4;5])
+    printfn "2.2 removeOddIdx : Expected: %A Actual: %A" [0;2;4] (removeOddIdx [0;1;2;3;4;])
+    printfn "2.3 combinePairs : Expected %A Actual : %A" [(1,2);(3,4)] (combinePair [1;2;3;4;5])
     printfn "2.4 mkComplex : Expected: %A Actual: %A" (1.0,2.0) (mkComplex 1.0 2.0)
     printfn "2.4 complexToPair : Expected: %A Actual: %A" (1.0,2.0) (complexToPair (1.0,2.0))
     printfn "2.5 explode1 : Expected: %A Actual: %A" ['F';'#';'I';'S';'N';'I';'C';'E'] (explode1 "F#ISNICE")
-    printfn "2.5 explode1 : Expected: %A Actual: %A" ['F';'#';'I';'S';'N';'I';'C';'E'] (explode2 "F#ISNICE")
+    printfn "2.5 explode2 : Expected: %A Actual: %A" ['F';'#';'I';'S';'N';'I';'C';'E'] (explode2 "F#ISNICE")
     printfn "2.6 implode : Expected: %A Actual: %A" "F#ISNICE" (implode ['F';'#';'I';'S';'N';'I';'C';'E'])
     printfn "2.6 implodeRev : Expected: %A Actual: %A" "ECINSI#F" (implodeRev ['F';'#';'I';'S';'N';'I';'C';'E'])
     printfn "2.7 toUpper : Expected: %A Actual: %A" "F#ISNICE" (toUpper "f#isnice")
     printfn "2.8 ack: Expected: %A Actual: %A" 57 (ack (2,27))
-    //printfn "2.9 time test with ack: %A" (time (fun () -> ack (3, 11)))
-    //printfn "2.9 timeArg1: %A" (timeArg1 ack (3, 11))
+    printfn "2.9 time test with ack: %A" (time (fun () -> ack (3, 11)))
+    printfn "2.9 timeArg1 test with ack: %A" (timeArg1 ack (3, 11))
     printfn "2.10 downto3: Expected: %A Actual: %A" 6 (downto3 (fun x y -> x + y) 3 0)
     printfn "2.10 fac: Expected: %A Actual: %A" 24 (fac 4)
     printfn "2.10 range: Expected: %A Actual %A" [1; 2; 6; 24] (range fac 4)
-    printfn "2.11 has no functions"
+    printfn "2.11 hello: Expected: %A Actual %A" [('H',4);('E',1);('L',1);('L',1);('O',1)] hello
     printfn "2.12 singleLetterScore: Expected: %A Actual: %A" 1 (singleLetterScore hello 4 0)
     printfn "2.12 singleLetterScore: Expected: %A Actual: %A" 5 (singleLetterScore hello 4 4)
     printfn "2.12 doubleLetterScore: Expected: %A Actual: %A" 2 (doubleLetterScore hello 4 0)
     printfn "2.12 doubleLetterScore: Expected: %A Actual: %A" 5 (doubleLetterScore hello 4 3)
-    printfn "2.12 trippleLetterScore: Expected: %A Actual: %A" 3 (trippleLetterScore hello 4 0)
-    printfn "2.12 trippleLetterScore: Expected: %A Actual: %A" 5 (trippleLetterScore hello 4 2)
+    printfn "2.12 tripleLetterScore: Expected: %A Actual: %A" 3 (tripleLetterScore hello 4 0)
+    printfn "2.12 tripleLetterScore: Expected: %A Actual: %A" 5 (tripleLetterScore hello 4 2)
     printfn "2.12 doubleWordScore: Expected: %A Actual: %A" 4 (doubleWordScore hello 4 2)
-    printfn "2.13 trippleWordScore: Expected: %A Actual: %A" 6 (trippleWordScore hello 4 2)
+    printfn "2.13 tripleWordScore: Expected: %A Actual: %A" 6 (tripleWordScore hello 4 2)
     printfn "2.14 oddConsonants: Expected: %A Actual: %A" -8 (oddConsonants hello 0 8)
-    
     0
